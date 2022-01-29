@@ -4,8 +4,7 @@ import numpy as np
 from integral_equation import frur_mk
 
 # вхiднi данi
-a = 0
-b = 0.35
+a, b = 0, 0.35
 
 # параметри сітки і ітераційного процесу
 n = 13
@@ -33,11 +32,11 @@ def frurmk_f(x,u):
 
 X, Y = frur_mk(a, b, 1, n, frurmk_k, frurmk_f, Y0, eps, mi, 2)
 
-plt.figure(3)
 plt.title("Наближений розв'язок IP")
 plt.xlabel('x')
 plt.ylabel('y')
 plt.grid(True)
+plt.axis((a, b, None, None))
 
 plt.plot(X, Y, 'm')
 

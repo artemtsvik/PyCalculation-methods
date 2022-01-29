@@ -5,8 +5,7 @@ from integral_equation import fr2_mk
 
 # вхідні дані
 lambd = 12
-a = 0
-b = 1
+a, b = 0, 1
 n = 101
 
 fr2mk_k = lambda x, s: 1 / (x + 1)  # опис ядра K(x,s)
@@ -18,6 +17,8 @@ plt.figure(1)
 plt.title("Наближений розв'язок IP")
 plt.xlabel('x')
 plt.ylabel('y')
+plt.axis((a, b, None, None))
+
 plt.plot(X, Y, 'm')
 
 
@@ -29,7 +30,10 @@ plt.figure(2)
 plt.title("Похибка розв'язку u(x) - y(x)")
 plt.xlabel('x')
 plt.ylabel('u - y')
+plt.axis((a, b, None, None))
 plt.grid(True)
+
+
 plt.plot(X, Z, 'r', linewidth=0.8)
 
 plt.show()

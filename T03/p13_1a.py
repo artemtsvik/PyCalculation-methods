@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 
 
 # вхiднi данi
-a = 0
-b = 5
+a, b = 0, 5
 
 Y0 = np.array([1])  # вектор початкових умов
 f31a = lambda t, u: (np.exp(-t) - u[0])  # підфункція правої частини системи
@@ -23,12 +22,14 @@ Y2 = sol2.y[0]
 X = np.linspace(0, 5, 51)
 
 # точний розв'язок
-u = lambda x: np.exp(-x) * (1 + x)
+u_true = lambda x: np.exp(-x) * (1 + x)
 
 plt.title("$u^{\prime}(x) = e^{-x} - u(x)$")
 plt.xlabel('x')
 plt.ylabel('y')
-plt.plot(T1, Y1, T2, Y2, X, u(X))
+plt.axis((a, b, None, None))
+
+plt.plot(T1, Y1, T2, Y2, X, u_true(X))
 
 plt.legend(("RK23", "RK45", "точний"))
 
