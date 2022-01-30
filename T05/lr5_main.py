@@ -8,9 +8,9 @@ from scipy.integrate import solve_ivp
 
 def lr5_u0(X):
     """Функції U(x,0), V(x,0)"""
-    f = np.apply_along_axis(lambda x: [np.sin(np.pi * x), np.cos(np.pi * x)], 0, X)
-    f.shape = -1
-    return f
+    uv = np.apply_along_axis(lambda x: [np.sin(np.pi * x), np.cos(np.pi * x)], 0, X)
+    uv.shape = -1
+    return uv
 
 
 def lr5_my1(t):
@@ -69,7 +69,7 @@ tk = 0
 
 for j in range(M):
     t0 = tk
-    tk = t0 + tau
+    tk += tau
 
     sol = solve_ivp(lr5_ff, (t0, tk), Y[1:-1], method='RK45')
     y = sol.y[:, -1]
@@ -82,6 +82,7 @@ for j in range(M):
     if (j + 1) * 2 == M:
         Y1 = Y.copy()  # запам'ятовуємо для побудови графіка розв'язку при t=M*tau/2
 
+
 # побудова графіків розв'язку при t=0, M*tau/2, M*tau
 t = M * tau
 t1 = 0.5 * t
@@ -90,9 +91,9 @@ plt.figure(1)
 plt.xlabel("x")
 plt.ylabel("u")
 plt.axis((a, b, None, None))
-plt.plot(X, Y0[:N], 'b.-', linewidth=0.8)
-plt.plot(X, Y1[:N], 'ko--', linewidth=0.8)
-plt.plot(X, Y[:N], 'r*-', linewidth=0.8)
+plt.plot(X, Y0[:N], 'b.-', markevery=6)
+plt.plot(X, Y1[:N], 'ko--', markevery=6)
+plt.plot(X, Y[:N], 'r*-', markevery=6)
 
 plt.legend(('u(x,0)', 'u(x, {})'.format(t1), 'u(x, {})'.format(t)))
 
@@ -100,9 +101,9 @@ plt.figure(2)
 plt.xlabel("x")
 plt.ylabel("v")
 plt.axis((a, b, None, None))
-plt.plot(X, Y0[N:], 'b.-', linewidth=0.8)
-plt.plot(X, Y1[N:], 'ko--', linewidth=0.8)
-plt.plot(X, Y[N:], 'r*-', linewidth=0.8)
+plt.plot(X, Y0[N:], 'b.-', markevery=6)
+plt.plot(X, Y1[N:], 'ko--', markevery=6)
+plt.plot(X, Y[N:], 'r*-', markevery=6)
 
 plt.legend(('v(x,0)', 'v(x, {})'.format(t1), 'v(x, {})'.format(t)))
 
@@ -116,8 +117,8 @@ plt.figure(3)
 plt.xlabel("x")
 plt.ylabel("u")
 plt.axis((a, b, None, None))
-plt.plot(X, Y[:N], 'b.-', linewidth=0.8)
-plt.plot(X, U, 'r*-', linewidth=0.8)
+plt.plot(X, Y[:N], 'b.-', markevery=6)
+plt.plot(X, U, 'r*-', markevery=6)
 
 plt.legend(('u(x, {})'.format(t), 'U(x, {})'.format(t)))
 
@@ -130,8 +131,8 @@ plt.figure(4)
 plt.xlabel("x")
 plt.ylabel("v")
 plt.axis((a, b, None, None))
-plt.plot(X, Y[N:], 'b.-', linewidth=0.8)
-plt.plot(X, V, 'r*-', linewidth=0.8)
+plt.plot(X, Y[N:], 'b.-', markevery=6)
+plt.plot(X, V, 'r*-', markevery=6)
 
 plt.legend(('v(x, {})'.format(t), 'V(x, {})'.format(t)))
 
