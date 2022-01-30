@@ -1,10 +1,10 @@
-import cmath
-
 import numpy as np
 import scipy.linalg
 from scipy.integrate import solve_ivp, quad
 import sympy
 import matplotlib.pyplot as plt
+
+__all__ = ["firlin", "mm_coloc", "sym_coloc", "mm_galer", "mm_ritz", "m_grid2", "m_iim"]
 
 
 def firlin(X, D, fir_a, fir_f):
@@ -413,7 +413,6 @@ def m_grid2(pfun, ffun, a, b, D, n):
     h = X[1] - X[0]
 
     # допомiжнi змiннi
-    n1 = n - 1
     hh = h * h
     h2 = 2 * h
 
@@ -426,15 +425,15 @@ def m_grid2(pfun, ffun, a, b, D, n):
     A[0, 1] = 2 * D[0]
     f[0] = - h2 * D[2] - hh * D[0] * ffun(a)
 
-    for k in range(1, n1):
+    for k in range(1, n - 1):
         xk = X[k]
         A[1, k] = - 2 - hh * pfun(xk)
         f[k] = - hh * ffun(xk)
 
-    A[2, n1-1] = 2 * D[3]
-    A[1, n1] = -(2 + hh * pfun(b)) * D[3] - h2 * D[4]
-    A[0, n1] = 1
-    f[n1] = - hh * D[3] * ffun(b) - h2 * D[5]
+    A[2, -2] = 2 * D[3]
+    A[1, -1] = -(2 + hh * pfun(b)) * D[3] - h2 * D[4]
+    A[0, -1] = 1
+    f[-1] = - hh * D[3] * ffun(b) - h2 * D[5]
 
     Y = scipy.linalg.solve_banded((1, 1), A, f, overwrite_ab=True, overwrite_b=True, check_finite=False)
 
@@ -465,10 +464,11 @@ def m_iim(kfun, pfun, ffun, a, b, D, n):
 
     Y : масив зi значеннями наближеного розв'язку.
     """
+    assert a < b, "{} < {}".format(a, b)
+
     X = np.linspace(a, b, n)
     h = X[1] - X[0]
 
-    n1 = n - 1
     hh = h * h
 
     # формування коефiцiєнтiв Ak, Ck, Bk, Fk, k=1,...,n для СЛАР
@@ -479,7 +479,7 @@ def m_iim(kfun, pfun, ffun, a, b, D, n):
     f[0] = -D[0]
     aip = kfun(X[1])
 
-    for k in range(1, n1):
+    for k in range(1, n - 1):
         ai = aip
         aip = kfun(X[k+1])
 
@@ -490,11 +490,10 @@ def m_iim(kfun, pfun, ffun, a, b, D, n):
 
         f[k] = - hh * ffun(xk)
 
-    A[1, n1] = -1
-    f[n1] = -D[1]
+    A[1, -1] = -1
+    f[-1] = -D[1]
 
     Y = scipy.linalg.solve_banded((1, 1), A, f, overwrite_ab=True, overwrite_b=True, check_finite=False)
 
     return X, Y
-
 
