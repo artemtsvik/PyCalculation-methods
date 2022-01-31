@@ -1,4 +1,4 @@
-"""Лабораторна робота 5 з МО
+"""Лабораторна робота №5 з МО
 Розв'язування крайової задачі для нестаціонарних рівнянь та систем рівнянь різних типів методом Роте (прямих)
 """
 import matplotlib.pyplot as plt
@@ -95,7 +95,7 @@ plt.plot(X, Y0[:N], 'b.-', markevery=6)
 plt.plot(X, Y1[:N], 'ko--', markevery=6)
 plt.plot(X, Y[:N], 'r*-', markevery=6)
 
-plt.legend(('u(x,0)', 'u(x, {})'.format(t1), 'u(x, {})'.format(t)))
+plt.legend(('u(x, 0)', 'u(x, {})'.format(t1), 'u(x, {})'.format(t)))
 
 plt.figure(2)
 plt.xlabel("x")
@@ -105,7 +105,7 @@ plt.plot(X, Y0[N:], 'b.-', markevery=6)
 plt.plot(X, Y1[N:], 'ko--', markevery=6)
 plt.plot(X, Y[N:], 'r*-', markevery=6)
 
-plt.legend(('v(x,0)', 'v(x, {})'.format(t1), 'v(x, {})'.format(t)))
+plt.legend(('v(x, 0)', 'v(x, {})'.format(t1), 'v(x, {})'.format(t)))
 
 # порівняння точного розв'язку
 # U(x,t)=sin(pi*x-t), V(x,t)=cos(pi*x-t)
@@ -122,7 +122,7 @@ plt.plot(X, U, 'r*-', markevery=6)
 
 plt.legend(('u(x, {})'.format(t), 'U(x, {})'.format(t)))
 
-print(np.linalg.norm(Y[:N] - U, np.inf))
+print("Похибка для u(x, {}) в нормі C:".format(t), np.linalg.norm(Y[:N] - U, np.inf))
 
 v = lambda x, t: np.cos(np.pi * x - t)
 V = v(X, t)
@@ -136,7 +136,7 @@ plt.plot(X, V, 'r*-', markevery=6)
 
 plt.legend(('v(x, {})'.format(t), 'V(x, {})'.format(t)))
 
-print(np.linalg.norm(Y[N:] - V, np.inf))
+print("Похибка для v(x, {}) в нормі C:".format(t), np.linalg.norm(Y[N:] - V, np.inf))
 
 plt.show()
 

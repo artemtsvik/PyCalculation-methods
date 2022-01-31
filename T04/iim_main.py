@@ -35,7 +35,7 @@ plt.plot(X, Y)
 
 U = iim_u1(X)  # Точний розв'язок
 
-print("Похибка в нормі C=", np.linalg.norm(Y - U))
+print("Похибка в нормі C:", np.linalg.norm(Y - U, np.inf))
 
 plt.figure(2)
 plt.title("Абсолютна похибка")
@@ -81,7 +81,7 @@ plt.plot(X, Y)
 
 U = iim_u2(X)  # Точний розв'язок
 
-print("Похибка в нормі C=", np.linalg.norm(Y - U))
+print("Похибка в нормі C:", np.linalg.norm(Y - U, np.inf))
 
 plt.figure(2)
 plt.title("Абсолютна похибка")
@@ -143,7 +143,7 @@ plt.plot(X, Y)
 
 U = iim_u3(X)  # Точний розв'язок
 
-print("Похибка в нормі C=", np.linalg.norm(Y - U))
+print("Похибка в нормі C:", np.linalg.norm(Y - U, np.inf))
 
 plt.figure(2)
 plt.title("Абсолютна похибка")
