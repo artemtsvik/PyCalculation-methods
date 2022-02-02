@@ -170,7 +170,7 @@ ax = plt.axes(projection='3d')
 ax.set_title("Абсолютна похибка")
 ax.plot_surface(Xx, Yy, U_eps, cmap='viridis')
 
-print("Похибка: ||Y - U||c =", np.linalg.norm(U_true - U, np.inf))
+print("Похибка: ||Y - U||c =", np.max(U_eps))
 
 plt.show()
 
