@@ -132,8 +132,9 @@ plt.figure(3)
 plt.xlabel("$z$")
 plt.ylabel("$||u(x, z)||^{2} - ||u_{0}(x)||^{2}$")
 plt.axis((0, zz, None, None))
+plt.grid(True)
 
-plt.plot(Z, Intu - Intu[0])
+plt.plot(Z, Intu - Intu[0], 'r')
 
 print(np.linalg.norm(Intu - Intu[0], np.inf))
 

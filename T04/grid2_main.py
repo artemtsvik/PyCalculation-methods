@@ -13,7 +13,7 @@ from ode import m_grid2
 
 # Вхідні дані
 a, b = 0, 1
-D = np.array([1, 1, 0, 1, 1, -1])
+D = np.array([1., 1., 0., 1., 1., -1.])
 
 pfun = lambda x: 5 * (2 - x)
 ffun = lambda x: (x * (6 * (2 * x - 1) + 5 * (1 - x) * (2 - x) * x * x))

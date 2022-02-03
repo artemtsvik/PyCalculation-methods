@@ -8,11 +8,11 @@ import numpy as np
 from ode import firlin
 
 # вхідні дані
-fir_a = lambda x: np.array([[0, 1], [0, 0]])
-fir_f = lambda x: np.array([[0], [6 * x * (1 - 2 * x)]])
+fir_a = lambda x: np.array([[0., 1.], [0., 0.]])
+fir_f = lambda x: np.array([[0.], [6 * x * (1 - 2 * x)]])
 
 a, b = 0, 1
-D = np.array([1, 0, 0, 1, 0, 0])
+D = np.array([1., 0., 0., 1., 0., 0.])
 
 # формування вузлiв виведення результатів
 n = 51

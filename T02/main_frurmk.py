@@ -14,6 +14,7 @@ mi = 500
 # початкове наближення
 Y0 = np.full(n, 0.05)
 
+
 def frurmk_k(x,t,u):
     # опис ядра K(x,t,u)
     y = np.exp(x - u)

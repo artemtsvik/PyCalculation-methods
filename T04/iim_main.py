@@ -12,7 +12,7 @@ from ode import m_iim
 # розв'язок буде U(x) = sin(x).
 
 a, b = 0, 1
-D = np.array([0, np.sin(1)])
+D = np.array([0., np.sin(1)])
 
 n = 51
 
@@ -58,7 +58,7 @@ plt.show()
 # U(x)=0.5*(1 - 99*x) + 50*x**2*sign(x) + exp(x) - 0.5*((1+x)*exp(1) + (1 - x)*exp(-1)).
 
 a, b = -1, 1
-D = np.array([0, 1])
+D = np.array([0., 1.])
 
 n = 51
 h = (b - a)/(n - 1)
@@ -106,7 +106,7 @@ plt.show()
 # де g = k1/k2, al = 1/(g + (1-g)*t), be = al*g.
 
 a, b = 0, 1
-D = np.array([1, 0])
+D = np.array([1., 0.])
 k1, k2 = 2, 3.5
 
 n = 101
@@ -164,7 +164,7 @@ plt.show()
 # Для p(x) = { p1 & 0<=x<t | p2 & t<x<=1 }, t = X(m), 1<m<n; k(x) = 1, f(x) = 0.
 
 a, b = 0, 1
-D = np.array([1, 0])
+D = np.array([1., 0.])
 p1, p2 = 2, 10
 
 n = 101

@@ -299,6 +299,7 @@ def frur_mk(a, b, nkf, n, k_dkfun, f_dffun, Y0, eps, mki, m):
     F = Y0.copy()
     Y = Y0.copy()
     J = np.zeros((n, n))
+    d = np.zeros(n)
 
     for k in range(mki):
         # знаходження розв'язку нелінійної системи:
@@ -316,18 +317,17 @@ def frur_mk(a, b, nkf, n, k_dkfun, f_dffun, Y0, eps, mki, m):
 
         if m == 1 or (m == 3 and k < 3):
             # метод градієнта
-            d = np.dot(F, J)
+            d[:] = np.dot(F, J)
             v = np.dot(d, J)
             sk = np.dot(F, v) / np.dot(v, v)
             d *= sk
 
         else:
             # метод Ньютона
-            d = np.linalg.solve(J, F)
+            d[:] = np.linalg.solve(J, F)
 
         Y -= d
-        sk = np.linalg.norm(d)
-        if sk <= eps:
+        if np.linalg.norm(d) <= eps:
             break
 
     return X, Y.T

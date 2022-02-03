@@ -39,7 +39,7 @@ Yy, Xx = np.meshgrid(Y, X)
 
 plt.figure(1)
 ax = plt.axes(projection='3d')
-ax.set_title("Y(x1, x2)")
+ax.set_title("Метод змінних напрямків")
 ax.plot_surface(Xx, Yy, U1, cmap='viridis')
 
 # порівняння точного розв'язку U(x,y)=(1-x)*x**2+(2-y)*y**2 і наближеного Y
@@ -50,7 +50,7 @@ U_eps = np.abs(U1 - UU)
 
 plt.figure(2)
 ax = plt.axes(projection='3d')
-ax.set_title("Абсолютна похибка")
+ax.set_title("Абсолютна похибка (МЗН)")
 ax.plot_surface(Xx, Yy, U_eps, cmap='hot')
 
 
@@ -64,14 +64,14 @@ n, X, Y, U2 = ptmopch(L, N, eps, t82_f, t82_mux, t82_muy)
 
 plt.figure(3)
 ax = plt.axes(projection='3d')
-ax.set_title("Y(x1, x2)")
+ax.set_title("Позмінно-трикутний метод")
 ax.plot_surface(Xx, Yy, U2, cmap='viridis')
 
 U_eps1 = np.abs(U2 - UU)
 
 plt.figure(4)
 ax = plt.axes(projection='3d')
-ax.set_title("Абсолютна похибка")
+ax.set_title("Абсолютна похибка (ПТМ)")
 ax.plot_surface(Xx, Yy, U_eps1, cmap='hot')
 
 print("ПТМ з ЧНП: ітерацій =", n)

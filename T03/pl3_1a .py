@@ -19,7 +19,7 @@ sol2 = solve_ivp(f31a, (a, b), Y0, method='RK45')
 T2 = sol2.t
 Y2 = sol2.y[0]
 
-X = np.linspace(0, 5, 51)
+X = np.linspace(a, b, 51)
 
 # точний розв'язок
 u_true = lambda x: np.exp(-x) * (1 + x)

@@ -38,9 +38,9 @@ def firlin(X, D, fir_a, fir_f):
 
     # Розв'язок однорiдної системи ЗДР
     if D[1] != 0:
-        u0 = np.array([1.0, D[2] / D[1]])
+        u0 = np.array([1.0, -D[0] / D[1]])
     else:
-        u0 = np.array([D[2] / D[0], 1.0])
+        u0 = np.array([-D[1] / D[0], 1.0])
 
     fir_fo = lambda t, y: np.dot(fir_a(t), y)  # опис правої частини для однорідної системи
 
@@ -69,8 +69,8 @@ def firlin(X, D, fir_a, fir_f):
 
 
     # обчислення параметра c
-    c = D[3] * U0[-1, 0] + D[4] * U0[-1, 1]
-    c = (D[5] - D[3] * U1[-1, 0] - D[4] * U1[-1, 1]) / c
+    c = D[3] * U0[0, -1] + D[4] * U0[1, -1]
+    c = (D[5] - D[3] * U1[0, -1] - D[4] * U1[1, -1]) / c
 
     # знаходження розв'язку в точках виведення
     U = U1 + c * U0
@@ -491,7 +491,7 @@ def m_iim(kfun, pfun, ffun, a, b, D, n):
         f[k] = - hh * ffun(xk)
 
     A[1, -1] = -1
-    f[-1] = -D[1]
+    f[-1] = - D[1]
 
     Y = scipy.linalg.solve_banded((1, 1), A, f, overwrite_ab=True, overwrite_b=True, check_finite=False)
 

@@ -74,7 +74,7 @@ for j in range(M):
         f[k] = - gs1 * (Y[k-1] + Y[k+1]) - ckj * Y[k] - tau * lr6_f(X[k], t1)
     f[N1] = - gs1 * (2*Y[N1-1] + D2*lr6_mu2(t - tau)) - ckj * Y[N1] - tau * lr6_f(l, t1) - D2gs * lr6_mu2(t)
 
-    # розв'язок СЛАР, знаходження
+    # розв'язок СЛАР
     Y[:] = scipy.linalg.solve_banded((1, 1), A, f, overwrite_b=True, check_finite=False)
 
     if (j + 1) * 2 == M:
