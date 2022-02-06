@@ -7,19 +7,19 @@ import matplotlib.pyplot as plt
 a, b = 0, 5
 
 Y0 = np.array([1])  # вектор початкових умов
-f31a = lambda t, u: (np.exp(-t) - u[0])  # підфункція правої частини системи
+f31a = lambda t, u: (np.exp(-t) - u[0])  # функція правої частини системи
+
+X = np.linspace(a, b, 51)
 
 # наближений розв'язкок, отриманий методом Рунге-Кутта 2-го порядку
-sol1 = solve_ivp(f31a, (a, b), Y0, method='RK23')
+sol1 = solve_ivp(f31a, (a, b), Y0, method='RK23', t_eval=X)
 T1 = sol1.t
 Y1 = sol1.y[0]
 
 # наближений розв'язкок, отриманий методом Рунге-Кутта 4-го порядку
-sol2 = solve_ivp(f31a, (a, b), Y0, method='RK45')
+sol2 = solve_ivp(f31a, (a, b), Y0, method='RK45', t_eval=X)
 T2 = sol2.t
 Y2 = sol2.y[0]
-
-X = np.linspace(a, b, 51)
 
 # точний розв'язок
 u_true = lambda x: np.exp(-x) * (1 + x)
